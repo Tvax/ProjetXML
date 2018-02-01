@@ -104,19 +104,24 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // app_lucky_number
-        if ('/lucky/number' === $pathinfo) {
-            return array (  '_controller' => 'App\\Controller\\LuckyController::number',  '_route' => 'app_lucky_number',);
-        }
-
-        // app_display_model
+        // app_controllermodel_index
         if ('' === $trimmedPathinfo) {
-            $ret = array (  '_controller' => 'App\\Controller\\DisplayModel::indexAction',  '_route' => 'app_display_model',);
+            $ret = array (  '_controller' => 'App\\Controller\\ControllerModel::indexAction',  '_route' => 'app_controllermodel_index',);
             if (substr($pathinfo, -1) !== '/') {
-                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'app_display_model'));
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'app_controllermodel_index'));
             }
 
             return $ret;
+        }
+
+        // app_controllermodel_validate
+        if ('/validate' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\ControllerModel::validateAction',  '_route' => 'app_controllermodel_validate',);
+        }
+
+        // app_controllermodel_admin
+        if ('/admin' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\ControllerModel::adminAction',  '_route' => 'app_controllermodel_admin',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
