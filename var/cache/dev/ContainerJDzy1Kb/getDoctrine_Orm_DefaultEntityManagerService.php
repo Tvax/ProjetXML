@@ -27,13 +27,13 @@ include_once $this->targetDirs[3].'/vendor/doctrine/orm/lib/Doctrine/ORM/EntityM
 include_once $this->targetDirs[3].'/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php';
 
 $a = new \Doctrine\Common\Cache\ArrayCache();
-$a->setNamespace('sf_orm_default_9d7d6734bd748dc673f62f5c18e34abf0f5b494fbfe188ef58d1ca5a0e40392b');
+$a->setNamespace('sf_orm_default_ad46ecae13d0ed2d7f35a4b481a61bcc398ec03d466975b18e0ecdaac31fc52c');
 
 $b = new \Doctrine\Common\Cache\ArrayCache();
-$b->setNamespace('sf_orm_default_9d7d6734bd748dc673f62f5c18e34abf0f5b494fbfe188ef58d1ca5a0e40392b');
+$b->setNamespace('sf_orm_default_ad46ecae13d0ed2d7f35a4b481a61bcc398ec03d466975b18e0ecdaac31fc52c');
 
 $c = new \Doctrine\Common\Cache\ArrayCache();
-$c->setNamespace('sf_orm_default_9d7d6734bd748dc673f62f5c18e34abf0f5b494fbfe188ef58d1ca5a0e40392b');
+$c->setNamespace('sf_orm_default_ad46ecae13d0ed2d7f35a4b481a61bcc398ec03d466975b18e0ecdaac31fc52c');
 
 $d = new \Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain();
 $d->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver(($this->privates['annotations.cached_reader'] ?? $this->getAnnotations_CachedReaderService()), array(0 => ($this->targetDirs[3].'/src/Entity'))), 'App\\Entity');

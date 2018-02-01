@@ -124,6 +124,16 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'App\\Controller\\ControllerModel::adminAction',  '_route' => 'app_controllermodel_admin',);
         }
 
+        // app_controllermodel_connect
+        if ('/connect' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\ControllerModel::connectAction',  '_route' => 'app_controllermodel_connect',);
+        }
+
+        // app_controllermodel_disconnect
+        if ('/disconnect' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\ControllerModel::disconnectAction',  '_route' => 'app_controllermodel_disconnect',);
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

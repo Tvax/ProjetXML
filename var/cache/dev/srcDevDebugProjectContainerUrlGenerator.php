@@ -33,6 +33,8 @@ class srcDevDebugProjectContainerUrlGenerator extends Symfony\Component\Routing\
         'app_controllermodel_index' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'App\\Controller\\ControllerModel::indexAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/',    ),  ),  4 =>   array (  ),  5 =>   array (  ),),
         'app_controllermodel_validate' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'App\\Controller\\ControllerModel::validateAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/validate',    ),  ),  4 =>   array (  ),  5 =>   array (  ),),
         'app_controllermodel_admin' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'App\\Controller\\ControllerModel::adminAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/admin',    ),  ),  4 =>   array (  ),  5 =>   array (  ),),
+        'app_controllermodel_connect' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'App\\Controller\\ControllerModel::connectAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/connect',    ),  ),  4 =>   array (  ),  5 =>   array (  ),),
+        'app_controllermodel_disconnect' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'App\\Controller\\ControllerModel::disconnectAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/disconnect',    ),  ),  4 =>   array (  ),  5 =>   array (  ),),
     );
         }
     }

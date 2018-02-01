@@ -6,7 +6,7 @@
  * Time: 14:32
  */
 
-namespace App\Controller;
+namespace App\Entity;
 
 
 class Model{

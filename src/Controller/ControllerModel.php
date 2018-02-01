@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-//use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
 
 class ControllerModel extends Controller{
+
+    private $user;
 
     private function isAdmin(){
         return $this->isConnected() && true;
@@ -17,6 +18,8 @@ class ControllerModel extends Controller{
         return false;
     }
 
+
+// <editor-fold defaultstate="collapsed" desc="routes">
     /**
      * @Route("/")
      */
@@ -54,6 +57,40 @@ class ControllerModel extends Controller{
         ));
     }
 
+    /**
+     * @Route("/connect")
+     */
+    public function connectAction(){
+        if($this->isValidLogin($_POST["username"], $_POST["password"])){
+            $this->setUserCookie();
+            return $this->sendToConnected($this->user->isAdmin());
+        }
+
+        $this->sendToLogin("Login Error");
+    }
+
+    /**
+     * @Route("/disconnect")
+     */
+    public function disconnectAction(){
+        $this->unsetUserCookie();
+        return $this->sendToLogin("Disconnected");
+    }
+
+// </editor-fold>
+
+    private function isValidLogin($usr, $pass){
+        if(!empty($usr) && !empty($pass)){
+            return $this->user = new User($usr, $pass);
+        }
+        return false;
+    }
+
+    private function setUserCookie(){
+        setcookie("ID",$_POST["username"] , time()+3600);
+    }
+
+// <editor-fold defaultstate="collapsed" desc="redirection">
     private function sendToValidate($isAdmin){
         return $this->render('default/validate.php.twig', array(
             'isAdmin' => $isAdmin,
@@ -65,4 +102,10 @@ class ControllerModel extends Controller{
             'isAdmin' => $isAdmin,
         ));
     }
+
+    private function unsetUserCookie(){
+        setcookie("ID", $this->user->getName(), time()-100);
+    }
+// </editor-fold>
+
 }

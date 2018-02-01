@@ -6,7 +6,7 @@
  * Time: 14:35
  */
 
-namespace App\Controller;
+namespace App\Entity;
 
 
 class Admin extends User {
