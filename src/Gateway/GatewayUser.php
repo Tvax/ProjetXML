@@ -17,7 +17,7 @@ class GatewayUser{
     }
 
     public function isAdmin($id){
-        return false;
+        return true;
     }
 
     public function isValidLogin($usr, $pass){

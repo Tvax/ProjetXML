@@ -2,23 +2,23 @@
 
 {% block title %}Home{% endblock %}
 
-{% block navbar %}
+{#{% block navbar %}#}
 
-    <li class="btn nav-item active">
-        <a class="nav-link" href="/validate">Validate</a>
-    </li>
+    {#<li class="btn nav-item active">#}
+        {#<a class="nav-link" href="/validate">Validate</a>#}
+    {#</li>#}
 
-    {% if isAdmin %}
-        <li class="btn nav-item active">
-            <a class="nav-link" href="/admin">Admin</a>
-        </li>
-    {% endif %}
+    {#{% if isAdmin %}#}
+        {#<li class="btn nav-item active">#}
+            {#<a class="nav-link" href="/admin">Admin</a>#}
+        {#</li>#}
+    {#{% endif %}#}
 
-    <li class="btn nav-item btn-danger active">
-        <a class="nav-link" href="/?disconnect=true">Disconnect</a>
-    </li>
+    {#<li class="btn nav-item btn-danger active">#}
+        {#<a class="nav-link" href="/?disconnect=true">Disconnect</a>#}
+    {#</li>#}
 
-{% endblock %}
+{#{% endblock %}#}
 
 {% block body %}
     <table class="table table-striped">
@@ -38,7 +38,7 @@
                 <td>v.{{ i }}</td>
                 <td><a href="#" class="btn btn-info">View</a></td>
             </tr>
-        {% endfor %}S
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}
