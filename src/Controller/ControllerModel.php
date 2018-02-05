@@ -24,6 +24,7 @@ class ControllerModel extends Controller{
 
 // <editor-fold defaultstate="collapsed" desc="routes">
 
+
     /**
      * @Route("/validate")
      */
@@ -50,7 +51,6 @@ class ControllerModel extends Controller{
         }
         return $this->sendToLogin($this->signInAsAdminMessage);
     }
-
 
 
     /**

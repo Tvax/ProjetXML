@@ -21,26 +21,28 @@
 {#{% endblock %}#}
 
 {% block body %}
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Model</th>
-            <th>Version</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for i in 1..5 %}
+    <div class="col-sm-12">
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <th scope="row">{{ i }}</th>
-                <td>Model {{ i }}</td>
-                <td>v.{{ i }}</td>
-                <td><a href="#" class="btn btn-info">View</a></td>
+                <th>#</th>
+                <th>Model</th>
+                <th>Version</th>
+                <th></th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for i in 1..5 %}
+                <tr>
+                    <th scope="row">{{ i }}</th>
+                    <td>Model {{ i }}</td>
+                    <td>v.{{ i }}</td>
+                    <td><a href="#" class="btn btn-info">View</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
 
 
