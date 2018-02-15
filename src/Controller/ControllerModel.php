@@ -24,6 +24,7 @@ class ControllerModel extends Controller{
 
 // <editor-fold defaultstate="collapsed" desc="routes">
 
+
     /**
      * @Route("/validate")
      */
@@ -45,12 +46,11 @@ class ControllerModel extends Controller{
 
         if($this->isUserConnected($this->user, $request)){
             if($this->user->isAdmin()){
-                return $this->sendToAdmin();
+                return $this->sendToAdmin($this->user->isAdmin());
             }
         }
         return $this->sendToLogin($this->signInAsAdminMessage);
     }
-
 
 
     /**
@@ -108,13 +108,13 @@ class ControllerModel extends Controller{
 
     private function sendToValidate($isAdmin){
         return $this->render('default/validate.php.twig', array(
-            'isAdmin' => $isAdmin,
+            'isAdmin' => $isAdmin
         ));
     }
 
     private function sendToConnected($isAdmin){
         return $this->render('default/model_list.php.twig', array(
-            'isAdmin' => $isAdmin,
+            'isAdmin' => $isAdmin
         ));
     }
 
@@ -124,8 +124,10 @@ class ControllerModel extends Controller{
         ));
     }
 
-    private function sendToAdmin(){
-        return $this->render('admin/admin.php.twig');
+    private function sendToAdmin($isAdmin){
+        return $this->render('admin/admin.php.twig', array(
+            'isAdmin' => $isAdmin
+        ));
     }
 
 

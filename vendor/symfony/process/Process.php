@@ -291,7 +291,9 @@ class Process implements \IteratorAggregate
 
         $envPairs = array();
         foreach ($env as $k => $v) {
-            $envPairs[] = $k.'='.$v;
+            if (false !== $v) {
+                $envPairs[] = $k.'='.$v;
+            }
         }
 
         if (!is_dir($this->cwd)) {
@@ -1066,7 +1068,7 @@ class Process implements \IteratorAggregate
     /**
      * Sets the environment variables.
      *
-     * An environment variable value should be a string.
+     * Each environment variable value should be a string.
      * If it is an array, the variable is ignored.
      * If it is false or null, it will be removed when
      * env vars are otherwise inherited.
@@ -1105,7 +1107,7 @@ class Process implements \IteratorAggregate
      *
      * This content will be passed to the underlying process standard input.
      *
-     * @param resource|scalar|\Traversable|null $input The content
+     * @param string|int|float|bool|resource|\Traversable|null $input The content
      *
      * @return self The current Process instance
      *
