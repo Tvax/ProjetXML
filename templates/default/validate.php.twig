@@ -18,5 +18,18 @@
 {#{% endblock %}#}
 
 {% block body %}
-validation
+<form>
+    <div class="form-group">
+      <label for="comment">XML to validate:</label>
+      <textarea class="form-control" rows="5" id="comment"></textarea>
+
+      <br>
+      <hr>
+      <br>
+
+      <label for="comment">XSD to validate:</label>
+      <textarea class="form-control" rows="5" id="comment"></textarea>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
 {% endblock %}
