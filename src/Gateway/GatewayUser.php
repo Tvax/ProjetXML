@@ -1,15 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: teiva
- * Date: 01/02/18
- * Time: 21:36
- */
 
 namespace App\Gateway;
 
-
-//TODO: acceder a la BDD
 class GatewayUser{
 
     public function __construct(){

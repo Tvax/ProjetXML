@@ -8,23 +8,23 @@
 
 namespace App\Entity;
 
-
-class Admin extends User {
+/**
+ * @Admin
+ * @ORM\Entity
+ * @ORM\Table(name="Admin")
+ */
+class Admin extends User
+{
 
     public function addUser($name, $pass){
-
+      //TODO: hit DB to add user
     }
 
     public function removeUser($name){
-
+      //TODO: hit DB to remove user
     }
 
-    public function addModel($model){
-
+    public function addModel($model, $email){
+      //TODO: hit DB to add model to user
     }
-
-    public function removeModel($model){
-
-    }
-
 }

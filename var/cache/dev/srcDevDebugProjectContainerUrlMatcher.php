@@ -30,6 +30,31 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
 
+        // app_controllermodel_validate
+        if ('/validate' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\ControllerModel::validateAction',  '_route' => 'app_controllermodel_validate',);
+        }
+
+        // app_controllermodel_validator
+        if ('/validator' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\ControllerModel::validatorAction',  '_route' => 'app_controllermodel_validator',);
+        }
+
+        // app_controllermodel_admin
+        if ('/admin' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\ControllerModel::adminAction',  '_route' => 'app_controllermodel_admin',);
+        }
+
+        // app_controllermodel_index
+        if ('' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'App\\Controller\\ControllerModel::indexAction',  '_route' => 'app_controllermodel_index',);
+            if (substr($pathinfo, -1) !== '/') {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'app_controllermodel_index'));
+            }
+
+            return $ret;
+        }
+
         if (0 === strpos($pathinfo, '/_')) {
             // _twig_error_test
             if (0 === strpos($pathinfo, '/_error') && preg_match('#^/_error/(?P<code>\\d+)(?:\\.(?P<_format>[^/]++))?$#s', $pathinfo, $matches)) {
@@ -104,21 +129,11 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // app_controllermodel_validate
-        if ('/validate' === $pathinfo) {
-            return array (  '_controller' => 'App\\Controller\\ControllerModel::validateAction',  '_route' => 'app_controllermodel_validate',);
-        }
-
-        // app_controllermodel_admin
-        if ('/admin' === $pathinfo) {
-            return array (  '_controller' => 'App\\Controller\\ControllerModel::adminAction',  '_route' => 'app_controllermodel_admin',);
-        }
-
-        // app_controllermodel_index
+        // index
         if ('' === $trimmedPathinfo) {
-            $ret = array (  '_controller' => 'App\\Controller\\ControllerModel::indexAction',  '_route' => 'app_controllermodel_index',);
+            $ret = array (  '_controller' => 'App\\Controller\\ControllerModel.php',  '_route' => 'index',);
             if (substr($pathinfo, -1) !== '/') {
-                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'app_controllermodel_index'));
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'index'));
             }
 
             return $ret;
