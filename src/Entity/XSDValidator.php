@@ -117,4 +117,8 @@ class XSDValidator
     return "valid";
   }
 
+  public function getComparedFile($modelTab){
+    return "Model Compared";
+  }
+
 }

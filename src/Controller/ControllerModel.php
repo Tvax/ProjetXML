@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Psr\Log\LoggerInterface;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +35,7 @@ class ControllerModel extends Controller{
 
   private $modelString = "model";
   private $email = "email";
-  private $modelAdded = "Model Added";
+  private $modelAdded = "Model Added To User";
 
   private $hour = 3600;
   private $invalidateCookie = 100;
@@ -46,10 +48,10 @@ class ControllerModel extends Controller{
     $user = new User();
 
     if($this->isUserConnected($user, $request) && $request->get($this->xsd) != null){
-        if($request->get($this->xml) == null){
-            return $this->sendToValidate($user->isAdmin(), $request->get($this->xsd), null, null);
-        }
-        return $this->sendToValidate($user->isAdmin(), $request->get($this->xsd), $request->get($this->xml), $this->isModelValid($request));
+      if($request->get($this->xml) == null){
+        return $this->sendToValidate($user->isAdmin(), $request->get($this->xsd), null, null);
+      }
+      return $this->sendToValidate($user->isAdmin(), $request->get($this->xsd), $request->get($this->xml), $this->isModelValid($request));
     }
     return $this->sendToLogin($this->signInMessage);
   }
@@ -97,7 +99,33 @@ class ControllerModel extends Controller{
       }
     }
 
-    return $this->sendToLogin($this->loginErrorMessage);
+    return $this->sendToLogin($this->signInMessage);
+  }
+
+  private function startsWith($haystack, $needle){
+    $length = strlen($needle);
+    return (substr($haystack, 0, $length) === $needle);
+  }
+
+  /**
+  * @Route("/compare")
+  */
+  public function compareAction(Request $request, LoggerInterface $log){
+    $user = new User();
+    $xsdValidator = new XSDValidator();
+    $modelTab;
+
+    if($this->isUserConnected($user, $request)){
+      if($user->isAdmin()){
+        if($request->get("model1") != null && $request->get("model2") != null){
+          $modelTab[] = $request->get("model1");
+          $modelTab[] = $request->get("model2");
+          return $this->sendToCompare($xsdValidator->getComparedFile($modelTab), $user->isAdmin());
+        }
+        return $this->adminAction($request);
+      }
+    }
+    return $this->sendToLogin($this->signInAsAdminMessage);
   }
 
   /**
@@ -160,12 +188,22 @@ class ControllerModel extends Controller{
     return $this->loginCookieIsSet($request) && $user->isConnected($request->cookies->get($this->cookieID));
   }
 
+  private function sendToCompare($modelCompared, $isAdmin){
+    if($modelCompared == null){
+      $this->adminAction(new Request());
+    }
+    return $this->render('default/compare.php.twig', array(
+      'modelComparedString' => $modelCompared,
+      'isAdmin' => $isAdmin
+    ));
+  }
+
   private function sendToValidate($isAdmin, $xsdModel, $xml, $modelValidated){
     return $this->render('default/validate.php.twig', array(
       'isAdmin' => $isAdmin,
       'modelValidated' => $modelValidated,
-        'xsd' => $xsdModel,
-        'xml' => $xml
+      'xsd' => $xsdModel,
+      'xml' => $xml
     ));
   }
 

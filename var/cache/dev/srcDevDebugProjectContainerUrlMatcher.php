@@ -55,6 +55,11 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $ret;
         }
 
+        // app_controllermodel_compare
+        if ('/compare' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\ControllerModel::compareAction',  '_route' => 'app_controllermodel_compare',);
+        }
+
         if (0 === strpos($pathinfo, '/_')) {
             // _twig_error_test
             if (0 === strpos($pathinfo, '/_error') && preg_match('#^/_error/(?P<code>\\d+)(?:\\.(?P<_format>[^/]++))?$#s', $pathinfo, $matches)) {

@@ -4,219 +4,274 @@
 
 {% block body %}
 
-{% if message == "User Deleted" %}
-<div class="alert alert-success alert-dismissible">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Success!</strong> {{ message }}
-</div>
-{% elseif message == "User Added" %}
-<div class="alert alert-success alert-dismissible">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Success!</strong> {{ message }}
-</div>
-{% elseif message == "Model Added" %}
-<div class="alert alert-success alert-dismissible">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Success!</strong> {{ message }}
-</div>
-{% endif %}
-
-<div class="card">
-
-  <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
-      <li class="nav-item">
-        <button type="button" style="margin-right: 10px;" class="btn btn-info" data-toggle="modal" data-target="#button1">Add User</button>
-      </li>
-      <li class="nav-item">
-        <button type="button" style="margin-right: 10px;" class="btn btn-info" data-toggle="modal" data-target="#button2">Delete User</button>
-      </li>
-      <li class="nav-item">
-        <button type="button" style="margin-right: 10px;" class="btn btn-info" data-toggle="modal" data-target="#button3">List Users</button>
-      </li>
-      <li class="nav-item">
-        <button type="button" style="margin-right: 10px;" class="btn btn-success" data-toggle="modal" data-target="#button3">Compare</button>
-      </li>
-    </ul>
-  </div>
-
-  <form action="/admin" method="post">
-    <!-- The Modal -->
-    <div class="modal fade" id="button1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">Add User</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-
-          <!-- Modal body -->
-          <div class="modal-body">
-
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input name="name" type="email" class="form-control">
-            </div>
-
-            <div class="form-group">
-              <label for="pwd">Password:</label>
-              <input name="password" type="password" class="form-control">
-            </div>
-          </div>
-
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-default">Add User</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-
-        </div>
+    {% if message == "User Deleted" %}
+      <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> {{ message }}
       </div>
-    </div>
-  </form>
-
-  <form action="/admin" method="post">
-    <!-- The Modal -->
-    <div class="modal fade" id="button2">
-      <div class="modal-dialog">
-        <div class="modal-content">
-
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">Delete User</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-
-          <!-- Modal body -->
-          <div class="modal-body">
-
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input name="delUser" type="email" class="form-control">
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-default">Delete User</button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-
-          </div>
-        </div>
+    {% elseif message == "User Added" %}
+      <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> {{ message }}
       </div>
-    </div>
-  </form>
-
-  <div class="modal fade" id="button3">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">List Users</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <div class="card">
-            <div class="card-body">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Users</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% set i = 0 %}
-                  {% for  model in models %}
-                  <tr>
-                    {% set i = i +1 %}
-                    <th scope="row">{{ i }}</th>
-                    <td>Username</td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-
-        </div>
+    {% elseif message == "Model Added" %}
+      <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> {{ message }}
       </div>
+    {% endif %}
+
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item">
+          <button type="button" style="margin-right: 10px;" class="btn btn-info" data-toggle="modal" data-target="#button1">Add User</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" style="margin-right: 10px;" class="btn btn-info" data-toggle="modal" data-target="#button2">Delete User</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" style="margin-right: 10px;" class="btn btn-info" data-toggle="modal" data-target="#button3">List Users</button>
+        </li>
+      </ul>
     </div>
+
+
+    <!-- Main Tab -->
 
     <div class="card-body">
       <table class="table table-striped">
         <thead>
-          <tr>
-            <th>#</th>
-            <th>Model</th>
-            <th>Version</th>
-            <th></th>
-          </tr>
+        <tr>
+          <th>#</th>
+          <th>Model</th>
+          <th>Version</th>
+          <th></th>
+        </tr>
         </thead>
         <tbody>
-          {% set i = 0 %}
-          {% for  model in models %}
+        {% set i = 0 %}
+        {% for  model in models %}
           <tr>
-            {% set i = i +1 %}
-            <th scope="row">{{ i }}</th>
+              {% set i = i +1 %}
+            <!-- <th scope="row">{{ i }}</th> -->
+            <th scope="row">{{i}}</th>
             <td>{{ model.getDescription }}</td>
             <td>v.{{ model.getVersion }}</td>
             <td>
               <!-- Button to Open the Modal -->
               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal{{ i }}">View</button>
 
-              <form action="/validate" method="post">
+              <!-- The Modal -->
+              <div class="modal fade" id="myModal{{ i }}">
+                <div class="modal-dialog modal-lg" style="width: 98%; height: 92%; padding: 0;">
+                  <div class="modal-content" style="height: 99%;">
 
-                <!-- The Modal -->
-                <div class="modal fade" id="myModal{{ i }}">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-
-                      <!-- Modal Header -->
-                      <div class="modal-header">
-                        <h4 class="modal-title">{{model.getVersion}}</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      </div>
-
-                      <!-- Modal body -->
-                      <div class="modal-body">
-                        {{model.getModel}}
-                      </div>
-
-                      <!-- Modal footer -->
-                      <div class="modal-footer">
-
-                        <textarea name="xsd" style="display:none;">{{model.getModel}}</textarea>
-
-                        <input name="name" type="email" class="form-control">
-                        <button type="submit" class="btn btn-success">Add To User</button>
-                        <button type="submit" class="btn btn-info">Validate</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                      </div>
-
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">{{model.getVersion}}</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        {{model.getModel}}
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+
+                      <form action="/admin" method="post">
+                        <textarea name="model" style="display:none;">{{model.getModel}}</textarea>
+                        <input name="email" type="email">
+                        <button type="submit" class="btn btn-success">Add To User</button>
+                      </form>
+
+                      <form action="/validate" method="post">
+                        <textarea name="xsd" style="display:none;">{{model.getModel}}</textarea>
+                        <button type="submit" class="btn btn-info">Validate</button>
+                      </form>
+
+                      <button type="button" style="margin-right: 10px;" class="btn btn-info" data-toggle="modal" data-target="#button{{i}}">Compare</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+
+                      <!-- The Modal -->
+                      <div class="modal fade" id="button{{i}}">
+                        <div class="modal-dialog modal-lg" style="width: 98%; height: 92%; padding: 0;">
+                          <div class="modal-content" style="height: 99%;">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h4 class="modal-title">Compare With</h4>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                              <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Model</th>
+                                  <th>Version</th>
+                                  <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% set d = 0 %}
+                                {% for  model2 in models %}
+                                  <tr>
+
+                                    <form action="/compare" method="post">
+
+                                      <textarea name="model1" style="display:none;">{{model.getModel}}</textarea>
+                                      <textarea name="model2" style="display:none;">{{model2.getModel}}</textarea>
+
+                                        {% set d = d +1 %}
+                                      <th scope="row">{{d}}</th>
+                                      <td>{{ model2.getDescription }}</td>
+                                      <td>v.{{ model2.getVersion }}</td>
+                                      <td><button type="submit" class="btn btn-default">Compare</button></td>
+                                    </form>
+
+                                  </tr>
+                                {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
                   </div>
-
                 </div>
-              </form>
-
+              </div>
             </td>
           </tr>
-          {% endfor %}
+        {% endfor %}
         </tbody>
       </table>
     </div>
+
+
+    <!-- Button click actions -->
+
+
+    <form action="/admin" method="post">
+      <!-- The Modal -->
+      <div class="modal fade" id="button1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Add User</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input name="name" type="email" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input name="password" type="password" class="form-control">
+              </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-default">Add User</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form action="/admin" method="post">
+      <!-- The Modal -->
+      <div class="modal fade" id="button2">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Delete User</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input name="delUser" type="email" class="form-control">
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default">Delete User</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="modal fade" id="button3">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">List Users</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="card">
+              <div class="card-body">
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Users</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% set i = 0 %}
+                  {% for  model in models %}
+                    <tr>
+                        {% set i = i +1 %}
+                      <th scope="row">{{ i }}</th>
+                      <td>Username</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
   </div>
 {% endblock %}
