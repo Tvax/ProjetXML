@@ -11,7 +11,6 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
-* @XSDValidator
 * @ORM\Entity
 * @ORM\Table(name="XSDValidator")
 */
@@ -43,7 +42,7 @@ class XSDValidator
   protected $xml;
 
   /**
-  * @ORM\Column(type="Model")
+  * @ORM\Column(type="string")
   * @var string - the model this XSD validates
   */
   protected $modelValidated;

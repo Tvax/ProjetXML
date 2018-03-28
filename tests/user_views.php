@@ -7,9 +7,9 @@
  */
 
 // user_views.php <user-id>
-require_once __DIR__ . "/../config/bootstrap.php";
+require_once __DIR__ . "/bootstrap.php";
 
-$theUserId = $argv[1];
+$theUserId = 1;
 
 $dql = "SELECT * FROM User WHERE id = ?1";
 

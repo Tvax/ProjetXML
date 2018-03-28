@@ -9,13 +9,12 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
 
+use Doctrine\ORM\Mapping as ORM;
 /**
- * @Model
- * @ORM\Entity(repositoryClass="ModelRepository")
- * @ORM\Table(name="models")
- */
+ * @ORM\Table(name="Models")
+ * @ORM\Entity
+ **/
 class Model
 {
     /**
@@ -41,25 +40,13 @@ class Model
      * @var string
      **/
     protected $version;
+
     /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="visibleModels")
      * @var User[] An ArrayCollection of Users.
      **/
     protected $viewers;
 
-    /**
-     * @ORM\OneToOne(targetEntity="XSDValidator" mappedBy="modelValidated")
-     * @var XSDValidator
-     */
-    protected $validator = null;
-
-    /**
-     * @return XSDValidator
-     */
-    public function getValidator(): XSDValidator
-    {
-        return $this->validator;
-    }
 
     /**
      * @param User $user
@@ -70,9 +57,6 @@ class Model
         $this->viewers[] = $user;
     }
 
-    /**
-     * @return User
-     */
     public function getViewers()
     {
         $ret = array();
@@ -139,5 +123,29 @@ class Model
     public function assignXSDValidator(XSDValidator $XSDValidator)
     {
         $this->validator = $XSDValidator;
+    }
+
+    /**
+     * @param string $version
+     */
+    public function setVersion(string $version): void
+    {
+        $this->version = $version;
+    }
+
+    /**
+     * @param User[] $viewers
+     */
+    public function setViewers(array $viewers): void
+    {
+        $this->viewers = $viewers;
+    }
+
+    /**
+     * @param XSDValidator $validator
+     */
+    public function setValidator(XSDValidator $validator): void
+    {
+        $this->validator = $validator;
     }
 }

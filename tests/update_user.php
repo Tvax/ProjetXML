@@ -7,14 +7,14 @@
  */
 
 // update_user.php <id> <new-name>
-require_once __DIR__ . "/../config/bootstrap.php";
+require_once __DIR__ . "/bootstrap.php";
 
-$id = $argv[1];
-$newName = $argv[2];
+$id = 1;
+$newName = "test2";
 
-$user = $entityManager->find('User', $id);
+$user = $entityManager->find('User', (int)$id);
 
-if ($product === null) {
+if ($user == null) {
     echo "User $id does not exist.\n";
     exit(1);
 }

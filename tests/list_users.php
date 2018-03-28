@@ -7,7 +7,7 @@
  */
 
 // list_users.php
-require_once __DIR__ . "/../config/bootstrap.php";
+require_once __DIR__ . "/bootstrap.php";
 
 $userRepository = $entityManager->getRepository('User');
 $users = $userRepository->findAll();

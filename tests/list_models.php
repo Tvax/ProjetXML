@@ -6,7 +6,7 @@
  * Time: 22:20
  */
 // list_models.php
-require_once __DIR__ . "/../config/bootstrap.php";
+require_once __DIR__ . "/bootstrap.php";
 
 $dql = "SELECT * FROM Model ";
 $query = $entityManager->createQuery($dql);

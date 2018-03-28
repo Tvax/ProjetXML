@@ -7,10 +7,10 @@
  */
 
 // find_from_XSD.php <XSD_id>
-
+require_once __DIR__ . "/bootstrap.php";
 $xsdId = $argv[1];
 
-$xsd = $entityManager->find('App\Entity\XSDValidator', (int)$xsdId);
+$xsd = $entityManager->find('XSDValidator', (int)$xsdId);
 
 $model = $entityManager->getRepository('Model')->getModelFromXSD($xsd);
 

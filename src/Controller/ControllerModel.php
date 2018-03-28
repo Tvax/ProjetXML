@@ -113,7 +113,6 @@ class ControllerModel extends Controller{
   public function compareAction(Request $request, LoggerInterface $log){
     $user = new User();
     $xsdValidator = new XSDValidator();
-    $modelTab;
 
     if($this->isUserConnected($user, $request)){
       if($user->isAdmin()){
@@ -149,7 +148,7 @@ class ControllerModel extends Controller{
       return $this->userDeleted;
     }
     elseif($request->get($this->name) != null && $request->get($this->password) != null) {
-      $admin->addUser($request->get($this->name), $request->get($this->password));
+      $admin->addUser($request->get($this->name), $request->get($this->password), $this->getDoctrine()->getManager());
       return $this->userAdded;
     }
     elseif($request->get($this->modelString) != null && $request->get($this->email) != null) {

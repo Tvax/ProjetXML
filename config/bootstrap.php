@@ -9,7 +9,7 @@
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
-require_once __DIR__."/../vendor/autoload.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 $isDevMode = true;
 
 $dbParams = array(
@@ -19,5 +19,4 @@ $dbParams = array(
     'dbname' => 'db_projet_tut'
 );
 
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../src/"), $isDevMode);
-$entityManager = EntityManager::create($dbParams, $config);
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/../src/Entity/"), $isDevMode);

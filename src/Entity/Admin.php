@@ -8,16 +8,21 @@
 
 namespace App\Entity;
 
-/**
- * @Admin
- * @ORM\Entity
- * @ORM\Table(name="Admin")
- */
+use App\Controller\ControllerModel;
+use App\Repository;
+
 class Admin extends User
 {
 
-    public function addUser($name, $pass){
-      //TODO: hit DB to add user
+    public function addUser($login, $pass, $entityManager){
+        $user = new User();
+        $user->setName($login);
+        $user->setPassword($pass);
+        try {
+            $entityManager->persist($user);
+            $entityManager->flush();
+        } catch (\Doctrine\ORM\ORMException $e) {
+        }
     }
 
     public function removeUser($name){

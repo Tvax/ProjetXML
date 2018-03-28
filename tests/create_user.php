@@ -7,14 +7,19 @@
  */
 
 // create_user.php
-require_once __DIR__ . "/../config/bootstrap.php";
+require_once __DIR__ . "/bootstrap.php";
 
 $userName = "test";
+$password = "test";
 
-$user = new \App\Entity\User();
+$user = new User();
 $user->setName($userName);
+$user->setPassword($password);
 
-$entityManager->persist($user);
-$entityManager->flush();
+try {
+    $entityManager->persist($user);
+    $entityManager->flush();
+} catch (\Doctrine\ORM\ORMException $e) {
+}
 
 echo "Created User with ID " . $user->getId() . "\n";

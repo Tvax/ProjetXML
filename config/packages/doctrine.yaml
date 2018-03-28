@@ -7,22 +7,28 @@ parameters:
 
 doctrine:
     dbal:
-        # configure these for your database server
-        driver: 'pdo_sqlite3'
-#        driver: 'pdo_mysql'
-        server_version: '5.7'
-        charset: utf8mb4
+        driver: pdo_mysql
+        host: 'localhost'
+        dbname: 'db_projet_tut'
+        user: 'root'
+        password: ''
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.root_dir%/data/data.db3'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
 
-        # With Symfony 3.3, remove the `resolve:` prefix
-        url: '%env(resolve:DATABASE_URL)%'
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
         mappings:
-            App:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+                    # ...
+                    Entity:
+                        type: annotation
+                        dir: "%kernel.root_dir%/../src/Entity"
+                        is_bundle: false
+                        prefix: App\Entity
+                        alias: App

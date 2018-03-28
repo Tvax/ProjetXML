@@ -5,11 +5,10 @@ namespace App\Gateway;
 class GatewayUser{
 
     public function __construct(){
-
     }
 
     public function isAdmin($id){
-        return true;
+        return $id == 1;
     }
 
     public function isValidLogin($usr, $pass){
@@ -21,7 +20,7 @@ class GatewayUser{
     }
 
     public function getID($usr){
-        return 1;
+        return $usr == "admin@admin.com";
     }
 
 }

@@ -7,7 +7,7 @@
  */
 
 // list_model_repository.php
-require_once __DIR__ . "/../config/bootstrap.php";
+require_once __DIR__ . "/bootstrap.php";
 
 
 $models = $entityManager->getRepository('Model')->getModelArray();
